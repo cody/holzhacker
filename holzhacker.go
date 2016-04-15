@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"os/user"
+	"path/filepath"
 
 	"lumberjack"
 )
@@ -20,7 +21,7 @@ func Create(fileName string) *log.Logger {
 	if err != nil {
 		log.Fatalf("[FATAL] holzhacker can't get currentUser: %s\n", err)
 	}
-	logFolder := currentUser.HomeDir + "/logs/" + os.Args[0] + "/"
+	logFolder := currentUser.HomeDir + "/logs/" + filepath.Base(os.Args[0]) + "/"
 	var writer io.Writer = &lumberjack.Logger{
 		Filename:   logFolder + fileName + ".log",
 		MaxSize:    1, // mb
