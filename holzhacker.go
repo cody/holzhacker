@@ -8,11 +8,12 @@ import (
 	"os/user"
 	"path/filepath"
 
-	"lumberjack"
+	"github.com/natefinch/lumberjack"
 )
 
 var console = flag.Bool("log", false, "Log auch auf Stdout ausgeben")
 
+// Create creates a logger with the specified filename
 func Create(fileName string) *log.Logger {
 	if !flag.Parsed() {
 		flag.Parse()
